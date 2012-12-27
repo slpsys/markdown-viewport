@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery-1.8.1.min.js"></script>
+		<script src="Markdown.Converter.js"></script>
+		<script language="javascript">
+			var mdFileName = window.location.search.substring(1, window.location.search.length)
+			$(function() { 
+				$.ajax({
+					url: mdFileName,
+					dataType: "text"
+				})
+				.done( function (e) {
+					var markedDown = (new Markdown.Converter()).makeHtml(e)
+					$('#mdContent').html(markedDown)
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id="mdContent">If this isn't replaced, you were given a bad link.</div>
+	</body>
+</html>
